@@ -4,6 +4,7 @@
   "description": "Full-stack demo for dropout risk prediction, SHAP explanation, recommendations, and monitoring.",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "postinstall": "npm --prefix frontend install",
     "dev": "npm --prefix frontend run dev",
     "build": "npm --prefix frontend run build",
@@ -12,9 +13,21 @@
     "dev:backend": "python backend/app.py",
     "backend": "python backend/app.py",
     "frontend:oauth": "npm --prefix frontend run dev -- --port 5300",
+=======
+    "dev": "npm --prefix frontend run dev",
+    "frontend": "npm --prefix frontend run dev",
+    "frontend:oauth": "powershell -ExecutionPolicy Bypass -File .\\frontend\\start-frontend-oauth.ps1",
+    "backend": ".venv\\Scripts\\python.exe backend\\services\\api_server.py",
+    "build": "npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview",
+>>>>>>> upstream/main
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC"
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> upstream/main

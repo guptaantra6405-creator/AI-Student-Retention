@@ -2,10 +2,17 @@ import os
 import sys
 import shap
 import joblib
+<<<<<<< HEAD
 import numpy as np
 import pandas as pd
 from pathlib import Path
 
+=======
+import pandas as pd
+from pathlib import Path
+
+# Load feature engineering
+>>>>>>> upstream/main
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "training"))
 try:
     from feature_engineering import build_features
@@ -22,6 +29,7 @@ _model        = _pipeline.named_steps["model"]
 _preprocessor = _pipeline.named_steps["preprocessor"]
 
 
+<<<<<<< HEAD
 def _clean_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     """
     Flatten any list/array values to scalars and convert to float.
@@ -83,6 +91,37 @@ def explain_student(input_dict):
         X_trans       = _preprocessor.transform(df)
         explainer     = shap.TreeExplainer(_model)
         shap_values   = explainer.shap_values(X_trans)
+=======
+def explain_student(input_dict):
+    # Step 1 — build DataFrame
+    df = pd.DataFrame([input_dict])
+
+    # Step 2 — apply feature engineering (same as training)
+    if _use_features:
+        try:
+            df = build_features(df)
+        except Exception as e:
+            print(f"[shap] Feature engineering failed: {e}")
+
+    # Step 3 — keep only numeric columns
+    df = df.select_dtypes(include=["number"]).fillna(0)
+
+    # Step 4 — add any missing columns the model expects (fill with 0)
+    try:
+        expected_cols = _preprocessor.feature_names_in_
+        for col in expected_cols:
+            if col not in df.columns:
+                df[col] = 0
+        df = df[expected_cols]
+    except Exception:
+        pass
+
+    # Step 5 — transform and explain
+    try:
+        X_trans      = _preprocessor.transform(df)
+        explainer    = shap.TreeExplainer(_model)
+        shap_values  = explainer.shap_values(X_trans)
+>>>>>>> upstream/main
         feature_names = _preprocessor.get_feature_names_out()
 
         if isinstance(shap_values, list) and len(shap_values) > 1:
@@ -103,4 +142,11 @@ def explain_student(input_dict):
 
     except Exception as e:
         print(f"[shap] Explanation failed: {e}")
+<<<<<<< HEAD
         return {"top_features": []}
+=======
+        # Return empty explanation so app doesn't crash
+        return {
+            "top_features": []
+        }
+>>>>>>> upstream/main
