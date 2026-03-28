@@ -10,9 +10,9 @@
   --bg: #ffffffe2;
   --card: #ffffff;
   --accent:  #5080f0;
-  --accent-2: #50d4f5;
+  --accent-2: #05cbfd;
   --text: #252628;
-  --muted: #8c9699;
+  --muted: #243a40;
   --border: #bac3cc;
   --glow: #f3f4f4;
   --input: #f8f9fa;
@@ -24,9 +24,9 @@
   --bg: #f5f7fb;
   --card: #ffffff;
   --accent: #2f80ed;
-  --accent-2: #56ccf2;
+  --accent-2: #00bfff;
   --text: #1f2937;
-  --muted: #6b7280;
+  --muted: #505a6e;
   --border: #e5e7eb;
   --glow: #f1f5f9;
   --input: #f8fafc;
@@ -220,6 +220,28 @@ textarea {
   padding: 24px 0 24px 0;
 }
 
+.stepper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.step {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: #ffffff;
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.step.active {
+  border-color: var(--accent);
+  background: var(--glow);
+}
+
 .login-slide {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -390,6 +412,21 @@ textarea {
 
 .dashboard-slide .grid {
   margin-top: 18px;
+}
+
+.quick-start-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.quick-start .ghost {
+  width: 100%;
+}
+
+.insight-card {
+  display: grid;
+  gap: 10px;
 }
 
 .dashboard-header {
